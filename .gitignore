@@ -1,0 +1,16 @@
+# Directories
+.vs/
+Debug/
+dump/
+
+# VSFiles
+
+*.pdb
+*.obj
+*.sln
+*.lik
+*.vcxproj*
+*.user
+
+
+
