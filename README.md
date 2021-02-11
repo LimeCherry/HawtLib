@@ -2,4 +2,5 @@
 Collection of Libraries
  
 ## Current Libraries Included:
-  -HawtTables
+  -Tables
+  -TextFormatting
