@@ -1,6 +1,6 @@
+// uncomment Following Code
+/*
 #include "../Source/Table.h"
-#include "../Source/Card.h"
-
 using namespace HawtLib::HawtTables;
 
 void Demo() {
@@ -10,5 +10,5 @@ void Demo() {
 	table.AddCard("Dodge Demon", 1).AddCard("Red", 1).AddCard("two", 1);		// Enrtry 1
 	table.AddCard("Nissan Versa", 2).AddCard("Grey", 2).AddCard("two", 2);		// Entry 2
 	table.PrintTable();			// Print Table
-	std::cin.get();
 }
+*/

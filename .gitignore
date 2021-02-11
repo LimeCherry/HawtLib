@@ -2,6 +2,7 @@
 .vs/
 Debug/
 dump/
+Release/
 
 # VSFiles
 
@@ -11,6 +12,6 @@ dump/
 *.lik
 *.vcxproj*
 *.user
-
+*.tlog
 
 
