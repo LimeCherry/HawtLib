@@ -2,6 +2,7 @@
 Collection of Libraries
  
 ## Current Libraries Included:
-  >Tables
-  
-  >Text Formatting
+  ### HawtTables
+  > Table Creation
+  ### HawtText
+  > Text Formatting
