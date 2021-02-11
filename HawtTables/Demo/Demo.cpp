@@ -3,7 +3,7 @@
 
 using namespace HawtLib::HawtTables;
 
-int main() {
+void Demo() {
 	Table table;				// Init Table obj
 	table.AddRows(3);			// Set number of rows to three
 	table.AddCard("Car Name", 0).AddCard("Color", 0).AddCard("Door Count", 0);	// Header
