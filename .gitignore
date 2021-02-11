@@ -1,8 +1,10 @@
 # Directories
 .vs/
 Debug/
-dump/
 Release/
+Build/
+
+HawtLibTester/
 
 # VSFiles
 
