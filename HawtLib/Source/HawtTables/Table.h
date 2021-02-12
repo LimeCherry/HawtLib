@@ -7,6 +7,10 @@ namespace HawtLib {
 	namespace HawtTables {
 		struct Card;
 
+		enum class TxtAlignment {
+			Left, Center, Right
+		};
+
 		class Table {
 		private:
 			struct Row {
@@ -16,6 +20,8 @@ namespace HawtLib {
 
 				~Row();
 			};
+
+			TxtAlignment m_TxtAlignment;
 
 		private:
 			std::vector<Row*> m_Rows;
@@ -31,7 +37,7 @@ namespace HawtLib {
 
 			friend struct Card;
 
-			explicit Table(char Ecap = '|');
+			Table(char Ecap = '|', TxtAlignment txtAlignment = TxtAlignment::Left);
 
 			void AddRows(unsigned int rows);
 
@@ -39,7 +45,7 @@ namespace HawtLib {
 
 			Table& AddCard(const std::string& text, unsigned int rowIdx, char bCap = '|');
 
-			
+			unsigned int GetBiggestCardLenght() const;
 
 			~Table();
 		};

@@ -1,12 +1,12 @@
+#include <iostream>
+
 #include "Table.h"
 #include "Card.h"
-
-#include <string>
 
 namespace HawtLib {
 
 	namespace HawtTables {
-		Table::Table(char Ecap) : m_Ecap(Ecap), m_BiggestCardLength(0) {}
+		Table::Table(char Ecap, TxtAlignment txtAlignment) : m_Ecap(Ecap), m_TxtAlignment(txtAlignment), m_BiggestCardLength(0) {}
 
 
 
@@ -89,6 +89,11 @@ namespace HawtLib {
 
 			m_Rows[rowIdx]->Cards.emplace_back(new Card{ m_This, "", m_Ecap });
 		}
+
+		unsigned int Table::GetBiggestCardLenght() const {
+			return m_BiggestCardLength;
+		}
+
 
 		Table::~Table() {
 			for (size_t i = 0; i < m_Rows.size(); ++i) {

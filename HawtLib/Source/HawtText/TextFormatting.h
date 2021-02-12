@@ -1,14 +1,20 @@
 #pragma once
 
-namespace std { 
-	template <class _Ty, class _Alloc = allocator<_Ty>> class vector;
-	using string = basic_string<char, char_traits<char>, allocator<char>>;
-}
+// undefined behavior
+
+//namespace std { 
+//	template <class _Ty, class _Alloc = allocator<_Ty>> class vector;
+//	using string = basic_string<char, char_traits<char>, allocator<char>>;
+//}
+
+#include <string>
+#include <vector>
 
 namespace HawtLib {
 
 	namespace HawtText {
 		std::string CenterText(const std::string& inStr, size_t space = 120);
+		std::string RightText(const std::string& inStr, size_t space = 120);
 		std::string ToLower(const std::string& inStr);
 		char ToLower(char inC);
 		std::string ToUpper(const std::string& inStr);

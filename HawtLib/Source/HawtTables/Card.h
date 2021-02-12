@@ -1,6 +1,4 @@
 #pragma once
-#include <iostream>
-
 #include "Table.h"
 
 namespace HawtLib {

@@ -1,11 +1,9 @@
-#include <string>
-#include <vector>
-
 #include "TextFormatting.h"
 
 namespace HawtLib {
 	namespace HawtText {
 
+		// Text Alignments
 		std::string CenterText(const std::string& inStr, size_t space) {
 			if (space < inStr.size()) {
 				printf("space must be atleast euqal to str size");
@@ -14,6 +12,16 @@ namespace HawtLib {
 			return std::string((space - inStr.size()) / 2, ' ') + inStr + std::string((space - inStr.size()) / 2, ' ');
 		}
 
+		std::string RightText(const std::string& inStr, size_t space) {
+			if (space < inStr.size()) {
+				printf("space must be atleast euqal to str size");
+				__debugbreak();
+			}
+			return std::string(space - inStr.size(), ' ') + inStr;
+		}
+
+
+		// Text Casings
 		std::string ToLower(const std::string& inStr) {
 			std::string outStr = "";
 			for (char c : inStr) {
@@ -51,6 +59,9 @@ namespace HawtLib {
 			}
 			return outStr;
 		}
+
+
+		// Utilities
 
 		std::vector<std::string> SplitString(const std::string& inStr, char delim) {
 			std::vector<std::string> outVec;
