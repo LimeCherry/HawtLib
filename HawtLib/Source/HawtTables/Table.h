@@ -21,11 +21,13 @@ namespace HawtLib {
 				~Row();
 			};
 
-			TxtAlignment m_TxtAlignment;
 
 		private:
 			std::vector<Row*> m_Rows;
+
+			TxtAlignment m_TxtAlignment;
 			char m_Ecap;	// character to add at the end of a row
+
 			unsigned int m_BiggestCardLength;
 			Table* m_This = this;
 
@@ -37,7 +39,7 @@ namespace HawtLib {
 
 			friend struct Card;
 
-			Table(char Ecap = '|', TxtAlignment txtAlignment = TxtAlignment::Left);
+			Table(TxtAlignment txtAlignment = TxtAlignment::Left, char Ecap = '|');
 
 			void AddRows(unsigned int rows);
 
@@ -46,6 +48,10 @@ namespace HawtLib {
 			Table& AddCard(const std::string& text, unsigned int rowIdx, char bCap = '|');
 
 			unsigned int GetBiggestCardLenght() const;
+
+			void SetTextAlignment(TxtAlignment txtAlignment) {
+				m_TxtAlignment = txtAlignment;
+			}
 
 			~Table();
 		};

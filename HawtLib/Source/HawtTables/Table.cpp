@@ -6,7 +6,7 @@
 namespace HawtLib {
 
 	namespace HawtTables {
-		Table::Table(char Ecap, TxtAlignment txtAlignment) : m_Ecap(Ecap), m_TxtAlignment(txtAlignment), m_BiggestCardLength(0) {}
+		Table::Table(TxtAlignment txtAlignment, char Ecap) : m_Ecap(Ecap), m_TxtAlignment(txtAlignment), m_BiggestCardLength(0) {}
 
 
 

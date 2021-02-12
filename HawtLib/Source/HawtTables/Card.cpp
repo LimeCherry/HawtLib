@@ -14,12 +14,10 @@ namespace HawtLib {
 				printf("%c%s%s", Bcap, text.c_str(), std::string(parentT->_GetExtraSpaces(text.size()), ' ').c_str());
 			}
 			else if (parentT->m_TxtAlignment == TxtAlignment::Center) {
-				printf("%c%s%s", Bcap, text.c_str(),
-					HawtText::CenterText(std::string(parentT->_GetExtraSpaces(text.size()), ' ')).c_str());
+				printf("%c%s%s", Bcap, HawtText::CenterText(text).c_str(), std::string(parentT->_GetExtraSpaces(text.size()), ' ').c_str());
 			}
 			else {	// Right
-				printf("%c%s%s", Bcap, text.c_str(),
-					HawtText::RightText(std::string(parentT->_GetExtraSpaces(text.size()), ' ')).c_str());
+				printf("%c%s%s", Bcap, HawtText::RightText(text).c_str(), std::string(parentT->_GetExtraSpaces(text.size()), ' ').c_str());
 			}
 		}
 
