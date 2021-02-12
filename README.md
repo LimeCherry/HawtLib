@@ -7,4 +7,4 @@ Collection of Libraries
   ### HawtText
   > Text Formatting
   ### HawtProfiling
-  > Text Formatting
+  > Profiling Tools
