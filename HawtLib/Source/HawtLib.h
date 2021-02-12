@@ -2,3 +2,4 @@
 
 #include "HawtText/TextFormatting.h"
 #include "HawtTables/Table.h"
+#include "HawtProfiling/HawtProfiling.h"
