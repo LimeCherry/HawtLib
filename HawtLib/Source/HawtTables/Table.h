@@ -45,7 +45,7 @@ namespace HawtLib {
 
 			void PrintTable() const;
 
-			Table& AddCard(const std::string& text, unsigned int rowIdx, char bCap = '|');
+			Table& AddCard(const std::string& text, unsigned int rowIdx,TxtAlignment txtAlignment = TxtAlignment::Left, char bCap = '|');
 
 			unsigned int GetBiggestCardLenght() const;
 

@@ -7,9 +7,13 @@ namespace HawtLib {
 		struct Card {
 			Table* parentT;
 			std::string text;
+			TxtAlignment txtAlignment;
 			char Bcap;
-
-			explicit Card(Table* parent, const std::string& text, char Bcap = '|');
+			
+			explicit Card(Table* parent,
+				const std::string& text,
+				TxtAlignment txtAlignmnt = TxtAlignment::Left,
+				char Bcap = '|');
 
 			void Print();
 		};

@@ -6,21 +6,27 @@
 namespace HawtLib {
 
 	namespace HawtTables {
-		Card::Card(Table* parent, const std::string& text, char Bcap) : parentT(parent), text(text), Bcap(Bcap) {}
+		Card::Card(Table* parent, const std::string& text, TxtAlignment txtAlignment, char Bcap)
+			: parentT(parent), text(text), txtAlignment(txtAlignment), Bcap(Bcap) {}
+
+		void SetTxtAlinment() {
+
+		}
 
 		void Card::Print() {
 			
-			if (parentT->m_TxtAlignment == TxtAlignment::Left) {
+			if (txtAlignment == TxtAlignment::Left) {
 				printf("%c%s%s", Bcap, text.c_str(), std::string(parentT->_GetExtraSpaces(text.size()), ' ').c_str());
 			}
-			else if (parentT->m_TxtAlignment == TxtAlignment::Center) {
-				printf("%c%s%s", Bcap, HawtText::CenterText(text).c_str(), std::string(parentT->_GetExtraSpaces(text.size()), ' ').c_str());
+			else if (txtAlignment == TxtAlignment::Center) {
+				printf("%c%s%s", Bcap,
+					HawtText::CenterText(text, parentT->GetBiggestCardLenght()).c_str(), "");
 			}
 			else {	// Right
-				printf("%c%s%s", Bcap, HawtText::RightText(text).c_str(), std::string(parentT->_GetExtraSpaces(text.size()), ' ').c_str());
+				printf("%c%s%s", Bcap,
+					HawtText::RightText(text, parentT->GetBiggestCardLenght()).c_str(), "");
 			}
 		}
-
 	}
 }
 

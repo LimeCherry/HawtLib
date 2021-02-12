@@ -9,7 +9,11 @@ namespace HawtLib {
 				printf("space must be atleast euqal to str size");
 				__debugbreak();
 			}
-			return std::string((space - inStr.size()) / 2, ' ') + inStr + std::string((space - inStr.size()) / 2, ' ');
+			//int whiteSpaces = space - inStr.size(),
+			//	left = whiteSpaces/2,
+			//	right = whiteSpaces - left;
+			 return std::string((space - inStr.size()) / 2, ' ') 
+				 + inStr + std::string(space - inStr.size() - ((space - inStr.size()) / 2), ' ');
 		}
 
 		std::string RightText(const std::string& inStr, size_t space) {
@@ -87,6 +91,7 @@ namespace HawtLib {
 					return outStr;
 				}
 			}
+			return str;
 		}
 		std::string TrimTrail(const std::string& str) {
 			std::string outStr = str;
@@ -96,6 +101,7 @@ namespace HawtLib {
 					return outStr;
 				}
 			}
+			return str;
 		}
 		std::string Trim(const std::string& str) {
 			return TrimTrail(TrimLead(str));
