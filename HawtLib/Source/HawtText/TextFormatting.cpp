@@ -25,6 +25,7 @@ namespace HawtLib {
 
 		char ToLower(char inC) {
 			if (inC <= 90 && inC >= 65) return inC += 32;
+			return inC;
 		}
 
 		std::string ToUpper(const std::string& inStr) {
@@ -38,6 +39,7 @@ namespace HawtLib {
 
 		char ToUpper(char inC) {
 			if (inC <= 122 && inC >= 97) return inC -= 32;
+			return inC;
 		}
 
 		std::string Title(const std::string& inStr) {
@@ -64,6 +66,28 @@ namespace HawtLib {
 				outVec.emplace_back(word);
 			}
 			return outVec;
+		}
+	
+		std::string TrimLead(const std::string& str) {
+			std::string outStr = str;
+			for (size_t i = 0; i < str.size(); ++i) {
+				if (str[i] != ' ') {
+					outStr.erase(0, i);
+					return outStr;
+				}
+			}
+		}
+		std::string TrimTrail(const std::string& str) {
+			std::string outStr = str;
+			for (int i = str.size() - 1; i >= 0; --i) {	// use int to allow -1
+				if (str[i] != ' ') {
+					outStr.erase(str.size() - 1, (str.size() - 1) - i);
+					return outStr;
+				}
+			}
+		}
+		std::string Trim(const std::string& str) {
+			return TrimTrail(TrimLead(str));
 		}
 	}
 }

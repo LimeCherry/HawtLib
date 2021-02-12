@@ -15,5 +15,8 @@ namespace HawtLib {
 		char ToUpper(char inC);
 		std::string Title(const std::string& inStr);
 		std::vector<std::string> SplitString(const std::string& inStr, char delim = ' ');
+		std::string TrimLead(const std::string& str);
+		std::string TrimTrail(const std::string& str);
+		std::string Trim(const std::string& str);
 	}
 }
