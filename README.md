@@ -6,3 +6,5 @@ Collection of Libraries
   > Table Creation
   ### HawtText
   > Text Formatting
+  ### HawtProfiling
+  > Text Formatting
