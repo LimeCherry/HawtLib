@@ -16,4 +16,6 @@ HawtLibTester/
 *.user
 *.tlog
 
+# Todo Files
 
+Todo.txt
