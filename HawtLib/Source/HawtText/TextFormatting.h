@@ -24,5 +24,6 @@ namespace HawtLib {
 		std::string TrimLead(const std::string& str);
 		std::string TrimTrail(const std::string& str);
 		std::string Trim(const std::string& str);
+		// std::string SurroundString(const std::string& str);
 	}
 }
