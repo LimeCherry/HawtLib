@@ -20,11 +20,11 @@ namespace HawtLib {
 			}
 			else if (txtAlignment == TxtAlignment::Center) {
 				printf("%c%s%s", Bcap,
-					HawtText::CenterText(text, parentT->GetBiggestCardLenght()).c_str(), "");
+					HawtText::CenterText(text, parentT->GetBiggestCardLength()).c_str(), "");
 			}
 			else {	// Right
 				printf("%c%s%s", Bcap,
-					HawtText::RightText(text, parentT->GetBiggestCardLenght()).c_str(), "");
+					HawtText::RightText(text, parentT->GetBiggestCardLength()).c_str(), "");
 			}
 		}
 	}

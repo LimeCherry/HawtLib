@@ -11,7 +11,6 @@ namespace HawtLib {
 			duration = static_cast<float>((std::chrono::high_resolution_clock::now() - startTime).count());
 		}
 
-
 		void ControlledTimer::Start() {
 			_Start();
 		}
