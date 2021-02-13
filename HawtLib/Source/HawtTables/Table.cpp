@@ -91,7 +91,7 @@ namespace HawtLib {
 			m_Rows[rowIdx]->Cards.emplace_back(new Card{ m_This, "", TxtAlignment::Left, m_Ecap });
 		}
 
-		unsigned int Table::GetBiggestCardLenght() const {
+		unsigned int Table::GetBiggestCardLength() const {
 			return m_BiggestCardLength;
 		}
 

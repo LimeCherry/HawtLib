@@ -47,7 +47,7 @@ namespace HawtLib {
 
 			Table& AddCard(const std::string& text, unsigned int rowIdx,TxtAlignment txtAlignment = TxtAlignment::Left, char bCap = '|');
 
-			unsigned int GetBiggestCardLenght() const;
+			unsigned int GetBiggestCardLength() const;
 
 			void SetTextAlignment(TxtAlignment txtAlignment) {
 				m_TxtAlignment = txtAlignment;
