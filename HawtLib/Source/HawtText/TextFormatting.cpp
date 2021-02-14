@@ -95,9 +95,9 @@ namespace HawtLib {
 		}
 		std::string TrimTrail(const std::string& str) {
 			std::string outStr = str;
-			for (int i = str.size() - 1; i >= 0; --i) {	// use int to allow -1
-				if (str[i] != ' ') {
-					outStr.erase(str.size() - 1, (str.size() - 1) - i);
+			for (size_t i = 0; i < str.size(); ++i) {
+				if (str[str.size() - (i + 1)] != ' ') {
+					outStr.erase(str.size() - i, i);
 					return outStr;
 				}
 			}

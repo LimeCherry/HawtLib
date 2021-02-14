@@ -28,26 +28,26 @@ namespace HawtLib {
 			TxtAlignment m_TxtAlignment;
 			char m_Ecap;	// character to add at the end of a row
 
-			unsigned int m_BiggestCardLength;
+			size_t m_BiggestCardLength;
 			Table* m_This = this;
 
 		private:
-			int _GetExtraSpaces(unsigned int letterCount);
+			size_t _GetExtraSpaces(size_t letterCount);
 			void _AddDivider(size_t rowIdx) const;
-			void _EndRow(unsigned int rowIdx) const;
+			void _EndRow(size_t rowIdx) const;
 		public:
 
 			friend struct Card;
 
 			Table(TxtAlignment txtAlignment = TxtAlignment::Left, char Ecap = '|');
 
-			void AddRows(unsigned int rows);
+			void AddRows(size_t rows);
 
 			void PrintTable() const;
 
-			Table& AddCard(const std::string& text, unsigned int rowIdx,TxtAlignment txtAlignment = TxtAlignment::Left, char bCap = '|');
+			Table& AddCard(const std::string& text, size_t rowIdx,TxtAlignment txtAlignment = TxtAlignment::Left, char bCap = '|');
 
-			unsigned int GetBiggestCardLength() const;
+			size_t GetBiggestCardLength() const;
 
 			void SetTextAlignment(TxtAlignment txtAlignment) {
 				m_TxtAlignment = txtAlignment;

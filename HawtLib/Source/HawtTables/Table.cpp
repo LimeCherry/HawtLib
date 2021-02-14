@@ -26,12 +26,12 @@ namespace HawtLib {
 
 
 
-		int Table::_GetExtraSpaces(unsigned int letterCount) {
+		size_t Table::_GetExtraSpaces(size_t letterCount) {
 			return m_BiggestCardLength - letterCount;
 		}
 
 
-		void Table::AddRows(unsigned int rows) {
+		void Table::AddRows(size_t rows) {
 			m_Rows.reserve(rows);
 			for (size_t i = 0; i < rows; ++i) {
 				m_Rows.emplace_back(new Row);
@@ -62,14 +62,13 @@ namespace HawtLib {
 			delete dividerCard;
 		}
 
-		Table& Table::AddCard(const std::string& text, unsigned int rowIdx, TxtAlignment txtAlignment, char bCap) {
+		Table& Table::AddCard(const std::string& text, size_t rowIdx, TxtAlignment txtAlignment, char bCap) {
 			if (rowIdx >= m_Rows.size()) {	// check if out of bounds
 				printf("ERROR -> Out of Bounds");
 				__debugbreak();
 			}
 
 			// check if the card is bigger than the current biggest card
-
 			if (text.size() > m_BiggestCardLength) {
 				m_BiggestCardLength = text.size();
 			}
@@ -81,7 +80,7 @@ namespace HawtLib {
 			return *this; // builder, allows .AddCard().AddCard()...
 		}
 
-		void Table::_EndRow(unsigned int rowIdx) const{
+		void Table::_EndRow(size_t rowIdx) const{
 			// size is always greater than the max index
 			if (rowIdx >= m_Rows.size()) {	// check if out of bounds
 				printf("ERROR -> Out of Bounds in line <%d>", __LINE__);
@@ -91,7 +90,7 @@ namespace HawtLib {
 			m_Rows[rowIdx]->Cards.emplace_back(new Card{ m_This, "", TxtAlignment::Left, m_Ecap });
 		}
 
-		unsigned int Table::GetBiggestCardLength() const {
+		size_t Table::GetBiggestCardLength() const {
 			return m_BiggestCardLength;
 		}
 
