@@ -8,3 +8,5 @@ Collection of Libraries
   > Text Formatting
   ### HawtProfiling
   > Profiling Tools
+  ### HawtParsing
+  > Parsing Tools (currently only supports INI files)
