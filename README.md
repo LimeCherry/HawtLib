@@ -10,3 +10,5 @@ Collection of Libraries
   > Profiling Tools
   ### HawtParsing
   > Parsing Tools (currently only supports INI files)
+  ### HawtCrypto
+  > Cryptographic Tools
