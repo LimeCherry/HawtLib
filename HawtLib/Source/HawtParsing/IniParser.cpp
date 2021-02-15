@@ -1,10 +1,57 @@
 #include <fstream>
+#include <string>
 
 #include "IniParser.h"
 #include "IniFile.h"
 
 #include "../HawtText/TextFormatting.h"
 #include "../HawtExperimental/1D_To_2D.h"
+
+
+///*
+//BUG FIX
+//*/
+//
+//void IniParser::_Lex(const std::string& line) {
+//	size_t lineEnd = line.size();
+//	std::vector<int> escapeIndices{};
+//	for (size_t i = line.find(';'); i != line.npos; i = line.substr(i + 1, line.size() - (i + 1).find(';'))) {
+//		if (i != 0) {
+//			if (line[i - 1] = '\\') {
+//				escapeIndices.push_back(i);
+//				continue;
+//			}
+//			else {
+//				lineEnd = i + 1;
+//				break;
+//			}
+//		}
+//	}
+//	/*for (size_t i = 0; i < escapeIndices.size(); ++i) {
+//		line.erase(escapeIndices[0] - i, 1);	// we subtract i per itseration as to make up for the minus one char per erase
+//	}*/
+//
+//	bool openSection = false;
+//	bool shouldEscape = false;
+//	for (size_t i = 0; i < lineEnd; ++i) {
+
+//
+//		if (line[i] == '\\') shouldEscape = true;
+//
+//		else if (line[i] == '[') openSection = true;
+//
+//		else if (line[i] == ']' && openSection = true) {
+//			openSection = false;
+//			tokens.AddToken(TokenTyoe::Section, line.substr(0, lineEnd));
+//			break;
+//		}
+//		// more code here
+//	}
+//
+//}
+
+
+
 
 namespace HawtLib {
 	namespace HawtParsing {
@@ -24,7 +71,8 @@ namespace HawtLib {
 
 			std::string line;
 			while (std::getline(ifs, line)) {
-				std::vector<IniParser::Token*>* lineTokens = _Lex(HawtText::Trim(line));
+				line = std::move(HawtText::Trim(line));
+				std::vector<IniParser::Token*>* lineTokens = _Lex(line);
 				allTokens.push_back(*lineTokens);
 			}
 
@@ -32,47 +80,54 @@ namespace HawtLib {
 			_Parse(iniFile, allTokens);	// fill iniFile construct with new data
 		}
 
-		std::vector<IniParser::Token*>* IniParser::_Lex(const std::string& line) {
+		std::vector<IniParser::Token*>* IniParser::_Lex(std::string& line) {
 			bool openSection = false;
-			bool escapeNext = false;
+			bool shouldEscape = false;
 			size_t tokenBegin = 0;
 			size_t lineEnd = line.size();
 			std::vector<IniParser::Token*>* tokens = new std::vector<IniParser::Token*>;
 
-			// check for trailing comments
-			for (int i = static_cast<int>(line.size()) - 1; i >= 0; --i) {
-				if (line[i] == ';' || line[i] == '#') if (i != 0) if (line[i - static_cast<size_t>(1)] != '\\') {
-					lineEnd = i + 1;
+			// comment remover
+			auto CommentRemover = [&line, &lineEnd]() -> void {
+				for (size_t i = line.find(';'); i != line.npos; i = line.substr(i + 1, line.size() - (i + 1)).find(';')) {
+					if (line[i - 1] == '\\') {
+						continue;
+					}
+					lineEnd = i;
+					break;
 				}
-			}
+				for (size_t i = line.find('#'); i != line.npos; i = line.substr(i + 1, line.size() - (i + 1)).find('#')) {
+					if (line[i - 1] == '\\') continue;
+					lineEnd = i;
+					break;
+				}
+			};
+			CommentRemover();
 
 			for (size_t i = 0; i < lineEnd; ++i) {
-
 				// check if escapeNext is currently true
-				if (escapeNext) {
-					escapeNext = false;
+				if (shouldEscape) {
+					line.erase(i - 1, 1);	// erase escaoe character				
+					i -= 1;
+					lineEnd -= 1;
+					shouldEscape = false;
 					continue;
 				}
 
-				// check if escape character is present
-				if (line[i] == '\\') escapeNext = true;
+				if (line[i] == '\\') shouldEscape = true;
 
-				// check if section
-				else if (line[i] == '[') openSection = true;
+				else if (line[i] == '[') 
+					openSection = true;
 
-				else if (line[i] == ']') {
-					if (openSection == true) {
+				else if (line[i] == ']' && openSection == true) {
+					tokens->push_back(new IniParser::Token{ IniParser::TokenType::Section,
+						line.substr(tokenBegin, i - tokenBegin + 1) });
+					openSection = false;
+					tokenBegin = i;
 
-						tokens->push_back(new IniParser::Token{ IniParser::TokenType::Section,
-							line.substr(tokenBegin, i - tokenBegin + 1) });
-
-						openSection = false;
-						tokenBegin = i;
-					}
 					break;	// Ignore the following chars; therefore,
 							// it will be discarded and treated as a comment
 				}
-
 				// check if keyvalue
 				else if (line[i] == '=') {
 					if (i == 0) {
@@ -83,11 +138,6 @@ namespace HawtLib {
 					tokenBegin = i + 2; // skip equals
 					tokens->push_back(new Token{ IniParser::TokenType::Value, line.substr(tokenBegin, lineEnd - tokenBegin) });
 				}
-
-				// check if comment
-				else if (line[i] == ';' || line[i] == '#') {
-					lineEnd = i + 1;
-				}				
 			}
 
 			return tokens;
@@ -107,9 +157,6 @@ namespace HawtLib {
 							
 							iniFile->m_Sections[iniFile->m_Sections.size() - ((iniFile->m_Sections.size() != 0)? 1 : 0)]->keyValues.push_back(new KeyValue{ HawtText::Trim(lineTokens[i]->data),
 								HawtText::Trim(lineTokens[i + 1]->data) });
-							
-							/*iniFile->m_Sections[iniFile->m_Sections.size() - (iniFile->m_Sections.size() == 0)? 0 : 1]->keyValues.push_back(new KeyValue{ HawtText::Trim(lineTokens[i]->data),
-								HawtText::Trim(lineTokens[i + 1]->data) });*/
 							++i;	// skip next
 						}
 						else __debugbreak();

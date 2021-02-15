@@ -21,7 +21,7 @@ namespace HawtLib {
 
 		private:
 			// Tokenize a line
-			std::vector<Token*>* _Lex(const std::string& line);
+			std::vector<Token*>* _Lex(std::string& line);
 
 			// creates an IniFile object
 			void _Parse(IniFile* iniFile, std::vector<std::vector<IniParser::Token*>>&);
