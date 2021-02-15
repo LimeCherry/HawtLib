@@ -29,9 +29,10 @@ namespace HawtLib {
 			~IniFile();
 
 			// copy and move semantics
-			IniFile(const IniFile&) = default;
+			IniFile(IniFile&);
+			IniFile& operator=(IniFile&);
+
 			IniFile(IniFile&&) = default;
-			IniFile& operator=(const IniFile&) = default;
 			IniFile& operator=(IniFile&&) = default;
 
 		public:

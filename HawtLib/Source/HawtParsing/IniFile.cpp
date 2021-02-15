@@ -9,6 +9,35 @@ namespace HawtLib {
 			IniParser::Get().Read(this, file);
 		}
 
+
+		IniFile::IniFile(IniFile& other) {
+			other.m_Sections.reserve(m_Sections.size());
+			for (Section* m_Section : m_Sections) {
+				Section* section = new Section{ m_Section->name};
+				std::vector<KeyValue*> keyValues{};
+				keyValues.reserve(m_Section->keyValues.size());
+				for (size_t i = 0; i < m_Section->keyValues.size(); ++i) {
+					keyValues.emplace_back(new KeyValue{ m_Section->keyValues[i]->key,
+						m_Section->keyValues[i]->value });
+				}
+				other.m_Sections.emplace_back(section);
+			}
+		}
+
+		IniFile& IniFile::operator=(IniFile& other) {
+			other.m_Sections.reserve(m_Sections.size());
+			for (Section* m_Section : m_Sections) {
+				Section* section = new Section{ m_Section->name };
+				std::vector<KeyValue*> keyValues{};
+				keyValues.reserve(m_Section->keyValues.size());
+				for (size_t i = 0; i < m_Section->keyValues.size(); ++i) {
+					keyValues.emplace_back(new KeyValue{ m_Section->keyValues[i]->key,
+						m_Section->keyValues[i]->value });
+				}
+				other.m_Sections.emplace_back(section);
+			}
+		}
+
 		IniFile::~IniFile() {
 			_CleanUp();
 		}
