@@ -7,52 +7,6 @@
 #include "../HawtText/TextFormatting.h"
 #include "../HawtExperimental/1D_To_2D.h"
 
-
-///*
-//BUG FIX
-//*/
-//
-//void IniParser::_Lex(const std::string& line) {
-//	size_t lineEnd = line.size();
-//	std::vector<int> escapeIndices{};
-//	for (size_t i = line.find(';'); i != line.npos; i = line.substr(i + 1, line.size() - (i + 1).find(';'))) {
-//		if (i != 0) {
-//			if (line[i - 1] = '\\') {
-//				escapeIndices.push_back(i);
-//				continue;
-//			}
-//			else {
-//				lineEnd = i + 1;
-//				break;
-//			}
-//		}
-//	}
-//	/*for (size_t i = 0; i < escapeIndices.size(); ++i) {
-//		line.erase(escapeIndices[0] - i, 1);	// we subtract i per itseration as to make up for the minus one char per erase
-//	}*/
-//
-//	bool openSection = false;
-//	bool shouldEscape = false;
-//	for (size_t i = 0; i < lineEnd; ++i) {
-
-//
-//		if (line[i] == '\\') shouldEscape = true;
-//
-//		else if (line[i] == '[') openSection = true;
-//
-//		else if (line[i] == ']' && openSection = true) {
-//			openSection = false;
-//			tokens.AddToken(TokenTyoe::Section, line.substr(0, lineEnd));
-//			break;
-//		}
-//		// more code here
-//	}
-//
-//}
-
-
-
-
 namespace HawtLib {
 	namespace HawtParsing {
 		IniParser& IniParser::Get() {
