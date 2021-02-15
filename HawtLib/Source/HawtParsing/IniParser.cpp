@@ -32,6 +32,7 @@ namespace HawtLib {
 
 			if (!iniFile->m_Sections.empty()) iniFile->_CleanUp();	// clean if not empty
 			_Parse(iniFile, allTokens);	// fill iniFile construct with new data
+			ifs.close();
 		}
 
 		std::vector<IniParser::Token*>* IniParser::_Lex(std::string& line) {
