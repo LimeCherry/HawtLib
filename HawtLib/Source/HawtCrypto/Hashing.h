@@ -3,8 +3,7 @@
 
 namespace HawtLib {
     namespace HawtCrypto {
-
-        // modernization of the hashing algorithm djb2
-        size_t DJB2(const std::string& str);
+        unsigned long long DJB2(const std::string& str);
+        unsigned long long SDBM(const std::string& str);
 	}
 }
