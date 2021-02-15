@@ -9,10 +9,6 @@ namespace HawtLib {
 		Card::Card(Table* parent, const std::string& text, TxtAlignment txtAlignment, char Bcap)
 			: parentT(parent), text(text), txtAlignment(txtAlignment), Bcap(Bcap) {}
 
-		void SetTxtAlinment() {
-
-		}
-
 		void Card::Print() {
 			
 			if (txtAlignment == TxtAlignment::Left) {
