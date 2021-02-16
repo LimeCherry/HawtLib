@@ -5,7 +5,6 @@
 #include "IniFile.h"
 
 #include "../HawtText/TextFormatting.h"
-#include "../HawtExperimental/1D_To_2D.h"
 
 namespace HawtLib {
 	namespace HawtParsing {
