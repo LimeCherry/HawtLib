@@ -38,6 +38,7 @@ namespace HawtLib {
 		std::vector<IniParser::Token*>* IniParser::_Lex(std::string& line) {
 			bool openSection = false;
 			bool shouldEscape = false;
+			bool keyPresent = false;
 			size_t tokenBegin = 0;
 			size_t lineEnd = line.size();
 			std::vector<IniParser::Token*>* tokens = new std::vector<IniParser::Token*>;
@@ -45,9 +46,7 @@ namespace HawtLib {
 			// comment remover
 			auto CommentRemover = [&line, &lineEnd]() -> void {
 				for (size_t i = line.find(';'); i != line.npos; i = line.substr(i + 1, line.size() - (i + 1)).find(';')) {
-					if (line[i - 1] == '\\') {
-						continue;
-					}
+					if (line[i - 1] == '\\') continue;
 					lineEnd = i;
 					break;
 				}
@@ -62,14 +61,14 @@ namespace HawtLib {
 			for (size_t i = 0; i < lineEnd; ++i) {
 				// check if escapeNext is currently true
 				if (shouldEscape) {
-					line.erase(i - 1, 1);	// erase escaoe character				
+					line.erase(i - 1, 1);	// erase escape character				
 					i -= 1;
 					lineEnd -= 1;
 					shouldEscape = false;
-					continue;
+					// continue;
 				}
 
-				if (line[i] == '\\') shouldEscape = true;
+				else if (line[i] == '\\') shouldEscape = true;
 
 				else if (line[i] == '[') 
 					openSection = true;
@@ -90,7 +89,12 @@ namespace HawtLib {
 						__debugbreak();
 					}
 					tokens->push_back(new Token{ IniParser::TokenType::Key, line.substr(tokenBegin, i) });
-					tokenBegin = i + 2; // skip equals
+					keyPresent = true;
+					tokenBegin = i + 1; // skip equals
+					// tokens->push_back(new Token{ IniParser::TokenType::Value, line.substr(tokenBegin, lineEnd - tokenBegin) });
+				}
+
+				else if (i == lineEnd - 1 && keyPresent) {
 					tokens->push_back(new Token{ IniParser::TokenType::Value, line.substr(tokenBegin, lineEnd - tokenBegin) });
 				}
 			}
