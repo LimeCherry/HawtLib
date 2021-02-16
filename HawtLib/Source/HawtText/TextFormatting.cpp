@@ -9,9 +9,6 @@ namespace HawtLib {
 				printf("space must be atleast euqal to str size");
 				__debugbreak();
 			}
-			//int whiteSpaces = space - inStr.size(),
-			//	left = whiteSpaces/2,
-			//	right = whiteSpaces - left;
 			 return std::string((space - inStr.size()) / 2, ' ') 
 				 + inStr + std::string(space - inStr.size() - ((space - inStr.size()) / 2), ' ');
 		}
